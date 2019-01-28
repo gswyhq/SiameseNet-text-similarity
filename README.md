@@ -16,7 +16,7 @@ For both the tasks mentioned above it uses a multilayer siamese LSTM/GRU network
 
 
 # How to run
-### Training
+### 训练
 ```
 $ python train.py [options/defaults]
 
@@ -53,7 +53,10 @@ options:
   --nolog_device_placement
 
 ```
-### Evaluation
+### 评估
 ```
-$ python eval.py --model graph#.pb
+$ python3 utils/eval.py --model ./runs/1548647044/checkpoints/model-15000
+
 ```
+
+[docker images](https://hub.docker.com/r/gswyhq/siamesenet-text-similarity)

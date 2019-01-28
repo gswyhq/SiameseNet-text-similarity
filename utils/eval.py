@@ -1,5 +1,6 @@
 import os
-
+import sys
+sys.path.append('.')
 import numpy as np
 import tensorflow as tf
 from sklearn.metrics import precision_score, recall_score, f1_score
@@ -13,10 +14,10 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 # Eval Parameters
 tf.flags.DEFINE_integer("batch_size", 64, "Batch Size (default: 64)")
 tf.flags.DEFINE_string("checkpoint_dir", "", "Checkpoint directory from training run")
-tf.flags.DEFINE_string("eval_filepath", "../data/dev.txt0", "Evaluate on this data (Default: None)")
-tf.flags.DEFINE_string("vocab_filepath", "../runs/1547013084/checkpoints/vocab_",
+tf.flags.DEFINE_string("eval_filepath", "./data/dev.txt0", "Evaluate on this data (Default: None)")
+tf.flags.DEFINE_string("vocab_filepath", "./runs/1548647044/checkpoints/vocab_",
                        "Load training time vocabulary (Default: None)")
-tf.flags.DEFINE_string("model", "../runs/1547013084/checkpoints/model-1000",
+tf.flags.DEFINE_string("model", "./runs/1548647044/checkpoints/model-15000",
                        "Load trained model checkpoint (Default: None)")
 
 # Misc Parameters
@@ -45,6 +46,7 @@ print("\nEvaluating...\n")
 checkpoint_file = FLAGS.model
 print(checkpoint_file)
 graph = tf.Graph()
+
 with graph.as_default():
     session_conf = tf.ConfigProto(
         allow_soft_placement=FLAGS.allow_soft_placement,
@@ -52,6 +54,7 @@ with graph.as_default():
     sess = tf.Session(config=session_conf)
     with sess.as_default():
         # Load the saved meta graph and restore variables
+        print("checkpoint_file: {}".format(checkpoint_file))
         saver = tf.train.import_meta_graph("{}.meta".format(checkpoint_file))
         sess.run(tf.global_variables_initializer())
         saver.restore(sess, checkpoint_file)

@@ -14,7 +14,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 tf.flags.DEFINE_integer("embedding_dim", 64, "Dimensionality of character embedding (default: 64)")
 tf.flags.DEFINE_float("dropout_keep_prob", 0.8, "Dropout keep probability (default: 1.0)")
 tf.flags.DEFINE_float("learning_rate", 1e-3, "L2 regularization lambda (default: 0.0)")
-tf.flags.DEFINE_string("training_files", "./data/train.txt", "training file (default: None)")
+tf.flags.DEFINE_string("training_files", "./data/train.txt", "training file (default: None)")  # 数据来源： https://github.com/ziweipolaris/atec2018-nlp.git
 tf.flags.DEFINE_integer("hidden_units", 50, "Number of hidden units (default:50)")
 tf.flags.DEFINE_integer("max_document_length", 50, "max length of sentence (default:50)")
 tf.flags.DEFINE_integer("percent_dev", 10, "percent_dev (default:10)")
